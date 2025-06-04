@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J-Development x ChatGPT</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        #hud {
+            position: absolute;
+            bottom: 40px; /* Über der Lebensanzeige */
+            left: 1px;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+            z-index: 100;
+        }
+
+        #hud span {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="hud">
+        <span id="plz">PLZ: ---</span>
+        <span id="playerId">ID: --</span>
+    </div>
+
+    <script>
+        // Warte auf Nachrichten vom Client (Lua)
+        window.addEventListener('message', function(event) {
+            var data = event.data;
+
+            // PLZ und Spieler-ID aktualisieren
+            document.getElementById("plz").innerHTML = "PLZ: " + data.plz;
+            document.getElementById("playerId").innerHTML = "ID: " + data.id;
+        });
+    </script>
+</body>
+</html>
